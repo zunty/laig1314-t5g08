@@ -18,6 +18,18 @@ class Patch: public CGFobject
 	string compute;
 	vector<vector<float>> controlpoints;
 
+	GLfloat crtlpointsONE[4][3];
+	GLfloat nrmlcomponONE[4][3];
+	GLfloat textpointsONE[4][2];
+
+	GLfloat crtlpointsTWO[9][3];
+	GLfloat nrmlcomponTWO[9][3];
+	GLfloat textpointsTWO[9][2];
+
+	GLfloat crtlpointsTHREE[16][3];
+	GLfloat nrmlcomponTHREE[16][3];
+	GLfloat textpointsTHREE[16][2];
+
 public:
 
 	Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints);
@@ -26,6 +38,9 @@ public:
 	unsigned int getPartsV();
 	string getCompute();
 	vector<vector<float>> getControlPoints(); 
+
+	void draw();
+	void print();
 };
 
 class Plane: public CGFobject

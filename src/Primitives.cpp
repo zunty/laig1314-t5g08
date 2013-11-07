@@ -341,32 +341,59 @@ void Plane::print()
 	cout << "Plane with " << divisions << " divisions" << endl << endl;
 }
 
-Patch::Patch( unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints )
+Patch::Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints )
 {
-
+	this->order = order,
+	this->partsU = partsU;
+	this->partsV = partsV;
+	this->compute = compute;
+	this->controlpoints = controlpoints;
 }
 
 unsigned int Patch::getOrder()
 {
-
+	return order;
 }
 
 unsigned int Patch::getPartsU()
 {
-
+	return partsU;
 }
 
 unsigned int Patch::getPartsV()
 {
-
+	return partsV;
 }
 
-std::string Patch::getCompute()
+string Patch::getCompute()
 {
-
+	return compute;
 }
 
 vector<vector<float>> Patch::getControlPoints()
 {
+	return controlpoints;
+}
 
+void Patch::draw()
+{
+	if(order == 1)
+	{ 
+
+	}
+
+	if(order == 2)
+	{
+
+	}
+
+	if(order == 3)
+	{
+
+	}
+}
+
+void Patch::print()
+{
+	cout << "NEW PATCH\n\n";
 }
