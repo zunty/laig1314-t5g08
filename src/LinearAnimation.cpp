@@ -16,6 +16,10 @@ void LinearAnimation::update( unsigned long t )
 {
 	if(doReset)
 		init(t);
+	else
+	{
+		unsigned long span = t - startTime;
+	}
 }
 
 void LinearAnimation::draw()
@@ -25,6 +29,6 @@ void LinearAnimation::draw()
 
 void LinearAnimation::reset()
 {
-
+	doReset = true;
 }
 
