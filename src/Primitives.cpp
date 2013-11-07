@@ -340,3 +340,33 @@ void Plane::print()
 {
 	cout << "Plane with " << divisions << " divisions" << endl << endl;
 }
+
+Patch::Patch( unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints )
+{
+
+}
+
+unsigned int Patch::getOrder()
+{
+
+}
+
+unsigned int Patch::getPartsU()
+{
+
+}
+
+unsigned int Patch::getPartsV()
+{
+
+}
+
+std::string Patch::getCompute()
+{
+
+}
+
+vector<vector<float>> Patch::getControlPoints()
+{
+
+}

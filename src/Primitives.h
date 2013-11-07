@@ -10,6 +10,24 @@
 
 using namespace std;
 
+class Patch: public CGFobject
+{
+	unsigned int order;
+	unsigned int partsU;
+	unsigned int partsV;
+	string compute;
+	vector<vector<float>> controlpoints;
+
+public:
+
+	Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints);
+	unsigned int getOrder();
+	unsigned int getPartsU();
+	unsigned int getPartsV();
+	string getCompute();
+	vector<vector<float>> getControlPoints(); 
+};
+
 class Plane: public CGFobject
 {
 	unsigned int divisions;
