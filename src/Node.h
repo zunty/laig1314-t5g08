@@ -12,7 +12,6 @@ using namespace std;
 
 class Node
 {
-
 	string id, appearanceref;
 	bool display_list;
 	vector<Scale*> scales;
