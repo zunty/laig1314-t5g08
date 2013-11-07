@@ -520,7 +520,7 @@ void Patch::draw()
 
 	if(order == 2)
 	{
-		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 3, 0.0, 1.0, 6, 3, *crtlpointsTWO);
+		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 3, 0.0, 1.0, 9, 3, *crtlpointsTWO);
 		glEnable(GL_MAP2_VERTEX_3);
 		glMapGrid2f(partsU, 0.0, 1.0, partsV, 0.0, 1.0);
 
@@ -543,7 +543,7 @@ void Patch::draw()
 
 	if(order == 3)
 	{
-		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 4, 0.0, 1.0, 6, 4, *crtlpointsTHREE);
+		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 4, 0.0, 1.0, 16, 4, *crtlpointsTHREE);
 		glEnable(GL_MAP2_VERTEX_3);
 		glMapGrid2f(partsU, 0.0, 1.0, partsV, 0.0, 1.0);
 
