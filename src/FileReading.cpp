@@ -326,13 +326,14 @@ FileReading::FileReading(char *filename)
 						if(strcmp(childs->Value(),"patch")==0)
 						{
 							int order, partsU, partsV;
-							string compute;
-							GLfloat* crtlpoints;
+							string compute;							
 							vector<vector<float>> points;
-
+						
 							childs->QueryIntAttribute("order", &order);
 							childs->QueryIntAttribute("partsU", &partsU);
 							childs->QueryIntAttribute("partsV", &partsV);
+
+							compute = childs->Attribute("compute");
 
 							TiXmlElement *patchchilds=childs->FirstChildElement();
 
@@ -340,7 +341,12 @@ FileReading::FileReading(char *filename)
 							{
 								if(strcmp(patchchilds->Value(), "controlpoint") == 0)
 								{
-									int x, y, z;
+									float x, y, z;
+
+									patchchilds->QueryFloatAttribute("x", &x);
+									patchchilds->QueryFloatAttribute("y", &y);
+									patchchilds->QueryFloatAttribute("z", &z);
+
 									vector<float> point;
 									point.push_back(x);
 									point.push_back(y);
@@ -348,24 +354,12 @@ FileReading::FileReading(char *filename)
 
 									points.push_back(point);									
 								}
+
+								patchchilds = patchchilds->NextSiblingElement();
 							}
 
-							if(points.size() == 4)
-							{
-								
-							}
-
-
-
-
-
-							/*
-							int div;
-							childs->QueryIntAttribute("parts", &div);
-
-							Plane* p = new Plane(div);
-							planes.push_back(p);
-							*/
+							Patch* pt = new Patch(order, partsU, partsV, compute, points);
+							patches.push_back(pt);
 						}
 
 						if(strcmp(childs->Value(),"plane")==0)
@@ -475,7 +469,7 @@ FileReading::FileReading(char *filename)
 				transforms=transforms->NextSiblingElement();
 			}
 
-			Node* nd = new Node(id, appearanceref, noderefs, scales, translations, rotations, planes, rectangles, triangles, cylinders, spheres, torus, transforms_order, display_state);			
+			Node* nd = new Node(id, appearanceref, noderefs, scales, translations, rotations, patches, planes, rectangles, triangles, cylinders, spheres, torus, transforms_order, display_state);			
 
 			nodes.push_back(nd);
 
