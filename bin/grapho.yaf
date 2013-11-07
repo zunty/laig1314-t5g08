@@ -1,0 +1,212 @@
+	<yaf>  
+		<globals background="0.0 0.0 0.0 0.0" drawmode="fill" shading="smooth" cullface="front" cullorder="CW" />  <!-- testar cullface both e front -->
+
+		<cameras initial="cam1" > 
+			<perspective id="cam1" near="5.0" far="20.0" angle="45.0" pos="5.0 5.0 5.0" target="0.0 0.0 0.0" />
+			<perspective id="cam2" near="6.0" far="10.0" angle="45.0" pos="15.0 3.0 5.0" target="0.0 0.0 0.0" />
+			<ortho id="cam3" near="8.0" far="10.0" left="5.0" right="5.0" top="5.0" bottom="5.0" /> 
+		</cameras>    
+
+		<lighting doublesided="false" local="true" enabled="true" ambient="0.4 0.6 0.5 1.0" > 
+
+			<omni id="lig1" enabled="true" 
+				location="1.0 2.0 2.0" 
+				ambient="0.4 0.4 0.4 0.5" 
+				diffuse="0.1 0.1 0.1 0.1" 
+				specular="0.3 0.2 0.3 0.1" /> 
+
+			<spot id="spot1" enabled="true" 
+				location="4.0 6.0 1.0"
+				ambient="0.4 0.4 0.4 0.1" 
+				diffuse="0.1 0.1 0.1 0.9" 
+				specular="0.5 0.7 0.4 0.4" 
+				angle="45.0" 
+				exponent="1.0" 
+				direction="0.0 0.0 0.0" /> 
+			</lighting> 
+
+			<textures>        
+				 <texture id="floor" file="floor.jpg" />
+				 <texture id="wall" file="wall.jpg" />
+				 <texture id="table" file="table.jpg" />
+				 <texture id="carpet" file="carpet.jpg" />
+				 <texture id="picture" file="picture.jpg" />
+				 <texture id="watch" file="watch.jpg" />
+			</textures> 
+
+			<appearances>
+				<appearance id="table" 
+				emissive="0.2 0.4 0.5 0.8" 
+				ambient="0.2 0.2 0.2 0.6" 
+				diffuse="0.6 0.6 0.6 0.3" 
+				specular="0.0 0.8 0.8 0.9" 
+				shininess="120.0"
+			/>			
+			</appearances> 
+
+			<graph rootid="root"> 
+
+				<node id="root"> 
+					<transforms> 
+					</transforms> 
+					
+					<children> 
+						<noderef id="table" />
+						<plane parts="50" />
+					</children> 
+				</node>
+				
+				<node id="table" > 
+					<transforms>
+						 <translate to="5.0 0.0 5.0" />
+					</transforms>
+					
+					<appearanceref id="table" />
+					
+					<children> 
+						<noderef id="top" />
+						<noderef id="leg1" />
+						<noderef id="leg2" />
+						<noderef id="leg3" />
+						<noderef id="leg4" />
+					</children> 
+				</node>
+				
+				<node id="top" displaylist="true" > 
+					<transforms>
+						<translate to="0.0 3.65 0.0" />
+						<scale factor="5.0 0.3 3.0" />
+					</transforms>
+					
+					<children> 
+						<noderef id="cube" />
+					</children> 
+				</node>
+				
+				<node id="leg4" > 
+					<transforms>
+						<translate to="2.25 1.75 1.25" />
+						<scale factor="0.3 3.5 0.3" />
+					</transforms>
+					
+					<children> 
+						<noderef id="cube" />
+					</children> 
+				</node>
+				
+				<node id="leg3" > 
+					<transforms>
+						<translate to="-2.25 1.75 1.25" />
+						<scale factor="0.3 3.5 0.3" />
+					</transforms>
+
+					<children> 
+						<noderef id="cube" />
+					</children> 
+				</node>
+				
+				<node id="leg2" displaylist="true"> 
+					<transforms>
+						<translate to="2.25 1.75 -1.25" />
+						<scale factor="0.3 3.5 0.3" />
+					</transforms>
+
+					<children> 
+						<noderef id="cube" />
+					</children> 
+				</node>
+
+				<node id="leg1" > 
+					<transforms>
+						<translate to="-2.25 1.75 -1.25" />
+						<scale factor="0.3 3.5 0.3" />
+					</transforms>
+
+					<children> 
+						<noderef id="cube" />
+					</children> 
+				</node>
+				
+				<node id="cube" > 
+					<transforms>
+					</transforms>
+
+					<children> 
+						<noderef id="rect1" />
+						<noderef id="rect2" />
+						<noderef id="rect3" />
+						<noderef id="rect4" />
+						<noderef id="rect5" />
+						<noderef id="rect6" />
+					</children> 
+				</node> 
+				
+				<node id="rect1" > 
+					<transforms> 
+						<translate to="0.0 -0.5 0.0" /> 
+						<rotate axis="x" angle="90"/>					
+					</transforms> 
+
+					<children> 
+						<rectangle xy1="-0.5 -0.5" xy2="0.5 0.5"/>
+					</children> 
+				</node> 
+
+				<node id="rect2" > 
+					<transforms> 
+						<translate to="0.0 0.5 0.0" /> 
+						<rotate axis="x" angle="-90"/>
+					</transforms> 						 
+
+					<children> 
+						<rectangle xy1="-0.5 -0.5" xy2="0.5 0.5"/>
+					</children> 
+				</node> 
+
+
+				<node id="rect3" > 
+					<transforms> 
+						<translate to="-0.5 0.0 0.0" /> 
+						<rotate axis="y" angle="-90"/>
+					</transforms> 
+
+					<children> 
+						<rectangle xy1="-0.5 -0.5" xy2="0.5 0.5"/>
+					</children> 
+				</node> 
+
+
+				<node id="rect4" > 
+					<transforms> 
+						<translate to="0.5 0.0 0.0" /> 
+						<rotate axis="y" angle="90"/>
+					</transforms> 
+
+					<children> 
+						<rectangle xy1="-0.5 -0.5" xy2="0.5 0.5"/>
+					</children> 
+				</node> 
+				
+				<node id="rect5" > 
+					<transforms> 
+						<translate to="0.0 0.0 -0.5" /> 
+						<rotate axis="x" angle="180"/>
+					</transforms> 
+
+					<children> 
+						<rectangle xy1="-0.5 -0.5" xy2="0.5 0.5"/>
+					</children> 
+				</node>
+				
+				<node id="rect6" >
+					<transforms>
+						<translate to="0.0 0.0 0.5"/>
+					</transforms> 
+
+					<children> 
+						<rectangle xy1="-0.5 -0.5" xy2="0.5 0.5"/>
+					</children> 
+				</node>
+				
+			</graph> 
+		</yaf> 
