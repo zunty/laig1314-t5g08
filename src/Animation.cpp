@@ -6,9 +6,11 @@ void Animation::init()
 
 }
 
-Animation::Animation()
+Animation::Animation(string id, float span, string type)
 {
-
+	this->id = id;
+	this->span = span;
+	this->type = type;
 }
 
 void Animation::update( unsigned long t )

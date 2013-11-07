@@ -5,17 +5,17 @@
 
 class LinearAnimation: public Animation
 {
-	void init();
+	void init(unsigned long t);
+	unsigned long startTime;
+	unsigned char doReset;
 	vector<vector<float>> crtlpoints;
 
 public:
 
-	LinearAnimation();
+	LinearAnimation(string id, float span, string type, vector<vector<float>> crtlpoints);
 
-	void update();
-
+	void update(unsigned long t);
 	void draw();
-
 	void reset();
 
 };

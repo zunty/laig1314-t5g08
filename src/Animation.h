@@ -12,7 +12,7 @@ class Animation
 
 public:
 
-	Animation();
+	Animation(string id, float span, string type);
 
 	virtual void update(unsigned long t);
 	virtual void draw();
