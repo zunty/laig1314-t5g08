@@ -244,6 +244,7 @@ FileReading::FileReading(char *filename)
 			vector<Transform*> transforms_order;
 			vector<Translate*> translations;
 			vector<Rotation*> rotations;
+			vector<Patch*> patches;
 			vector<Plane*> planes;
 			vector<Rectangle*> rectangles;
 			vector<Triangle*> triangles;
@@ -322,6 +323,51 @@ FileReading::FileReading(char *filename)
 					TiXmlElement *childs=transforms->FirstChildElement();
 					while(childs)
 					{
+						if(strcmp(childs->Value(),"patch")==0)
+						{
+							int order, partsU, partsV;
+							string compute;
+							GLfloat* crtlpoints;
+							vector<vector<float>> points;
+
+							childs->QueryIntAttribute("order", &order);
+							childs->QueryIntAttribute("partsU", &partsU);
+							childs->QueryIntAttribute("partsV", &partsV);
+
+							TiXmlElement *patchchilds=childs->FirstChildElement();
+
+							while(patchchilds)
+							{
+								if(strcmp(patchchilds->Value(), "controlpoint") == 0)
+								{
+									int x, y, z;
+									vector<float> point;
+									point.push_back(x);
+									point.push_back(y);
+									point.push_back(z);
+
+									points.push_back(point);									
+								}
+							}
+
+							if(points.size() == 4)
+							{
+								
+							}
+
+
+
+
+
+							/*
+							int div;
+							childs->QueryIntAttribute("parts", &div);
+
+							Plane* p = new Plane(div);
+							planes.push_back(p);
+							*/
+						}
+
 						if(strcmp(childs->Value(),"plane")==0)
 						{
 							int div;

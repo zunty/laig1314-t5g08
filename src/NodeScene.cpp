@@ -6,7 +6,7 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 	this->id == id;
 	
 
-	for(int i = 0; i < nodes.size(); i++)
+	for(unsigned int i = 0; i < nodes.size(); i++)
 	{
 		if(id == nodes[i]->getId())
 		{
@@ -18,7 +18,7 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 
 			app = false;
 
-			for(int j = 0; j < appearances.size(); j++)
+			for(unsigned int j = 0; j < appearances.size(); j++)
 			{
 				if(nodes[i]->getAppearancesref() == appearances[j]->getId())
 				{
@@ -44,7 +44,7 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 
 						app = true;
 
-						for(int k = 0; k < textures.size(); k++)
+						for(unsigned int k = 0; k < textures.size(); k++)
 						{
 							if(appearances[j]->getTextureref() == textures[k]->getId())
 							{
@@ -64,32 +64,32 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 
 			primitives.clear();
 
-			for(int j = 0; j < nodes[i]->getPlanes().size(); j++)
+			for(unsigned int j = 0; j < nodes[i]->getPlanes().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getPlanes()[j]);
 			}
 
-			for(int j = 0; j < nodes[i]->getRectangles().size(); j++)
+			for(unsigned int j = 0; j < nodes[i]->getRectangles().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getRectangles()[j]);
 			}
 
-			for(int j = 0; j < nodes[i]->getTriangles().size(); j++)
+			for(unsigned int j = 0; j < nodes[i]->getTriangles().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getTriangles()[j]);
 			}
 
-			for(int j = 0; j < nodes[i]->getCylinders().size(); j++)
+			for(unsigned int j = 0; j < nodes[i]->getCylinders().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getCylinders()[j]);
 			}
 
-			for(int j = 0; j < nodes[i]->getTorus().size(); j++)
+			for(unsigned int j = 0; j < nodes[i]->getTorus().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getTorus()[j]);
 			}
 
-			for(int j = 0; j < nodes[i]->getSpheres().size(); j++)
+			for(unsigned int j = 0; j < nodes[i]->getSpheres().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getSpheres()[j]);
 			}
@@ -102,7 +102,7 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 
 			if(!nodes[i]->getNoderefs().empty())
 			{
-				for(int j = 0; j < nodes[i]->getNoderefs().size(); j++)
+				for(unsigned int j = 0; j < nodes[i]->getNoderefs().size(); j++)
 				{
 					NodeScene* n = new NodeScene(nodes[i]->getNoderefs()[j], appearances, textures, nodes);
 					child_nodes.push_back(n);
@@ -124,7 +124,7 @@ void NodeScene::generateGeometry()
 		appearance->apply();
 	
 	//Aplicar transformações
-	for(int i = 0; i < scene_transforms.size(); i++){
+	for(unsigned int i = 0; i < scene_transforms.size(); i++){
 
 		if(scene_transforms[i]->getType() == tr)
 			glTranslatef(scene_transforms[i]->getX(), scene_transforms[i]->getY(), scene_transforms[i]->getZ());		

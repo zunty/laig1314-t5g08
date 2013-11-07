@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(string id, string appearanceref_id, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations, vector<Plane*> planes,  vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list)
+Node::Node(string id, string appearanceref_id, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations,  vector<Patch*> patches, vector<Plane*> planes,  vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list)
 {
 		this->id = id;
 		this->appearanceref = appearanceref;
@@ -9,6 +9,7 @@ Node::Node(string id, string appearanceref_id, vector<string> noderefs, vector<S
 		this->transforms = transforms;
 		this->translations = translations;
 		this->rotations = rotations;
+		this->patches = patches;
 		this->planes = planes;
 		this->rectangles = rectangles;
 		this->triangles = triangles;
@@ -51,6 +52,11 @@ vector<Translate*> Node::getTranslations()
 vector<Rotation*> Node::getRotations()
 {
    return rotations;
+}
+
+vector<Patch*> Node::getPatches()
+{
+	return patches;
 }
 
 vector<Plane*> Node::getPlanes()
@@ -123,6 +129,11 @@ void Node::print()
 		scales[i]->print();
 	}
 
+	for(unsigned int i = 0; i < patches.size(); i++)
+	{
+		patches[i]->print();
+	}
+
 	for(unsigned int i = 0; i < planes.size(); i++)
 	{
 		planes[i]->print();
@@ -153,4 +164,6 @@ void Node::print()
 		torus[i]->print();
 	}
 }
+
+
 

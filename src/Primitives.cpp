@@ -341,13 +341,13 @@ void Plane::print()
 	cout << "Plane with " << divisions << " divisions" << endl << endl;
 }
 
-Patch::Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints )
+Patch::Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, GLfloat* crtlpoints )
 {
 	this->order = order,
 	this->partsU = partsU;
 	this->partsV = partsV;
 	this->compute = compute;
-	this->controlpoints = controlpoints;
+	this->crtlpoints = crtlpoints;
 }
 
 unsigned int Patch::getOrder()
@@ -370,26 +370,78 @@ string Patch::getCompute()
 	return compute;
 }
 
-vector<vector<float>> Patch::getControlPoints()
+GLfloat* Patch::getControlPoints()
 {
-	return controlpoints;
+	return crtlpoints;
 }
 
 void Patch::draw()
 {
 	if(order == 1)
-	{ 
+	{
+		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2, 0.0, 1.0, 6, 2, crtlpoints);
+		glEnable(GL_MAP2_VERTEX_3);
+		glMapGrid2f(partsU, 0.0, 1.0, partsV, 0.0, 1.0);
 
+		if(compute == "line")
+		{
+			glEvalMesh2(GL_LINE, 0, partsU, 0, partsV);
+		}
+
+		if(compute == "fill")
+		{
+			glEvalMesh2(GL_FILL, 0, partsU, 0, partsV);
+		}
+
+		if(compute == "point")
+		{
+			glEvalMesh2(GL_POINT, 0, partsU, 0, partsV);
+		}
 	}
 
 	if(order == 2)
 	{
+		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 3, 0.0, 1.0, 6, 3, crtlpoints);
+		glEnable(GL_MAP2_VERTEX_3);
+		glMapGrid2f(partsU, 0.0, 1.0, partsV, 0.0, 1.0);
+
+		if(compute == "line")
+		{
+			glEvalMesh2(GL_LINE, 0, partsU, 0, partsV);
+		}
+
+		if(compute == "fill")
+		{
+			glEvalMesh2(GL_FILL, 0, partsU, 0, partsV);
+		}
+
+		if(compute == "point")
+		{
+			glEvalMesh2(GL_POINT, 0, partsU, 0, partsV);
+		}
 
 	}
 
 	if(order == 3)
 	{
+		glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 4, 0.0, 1.0, 6, 4, crtlpoints);
+		glEnable(GL_MAP2_VERTEX_3);
+		glMapGrid2f(partsU, 0.0, 1.0, partsV, 0.0, 1.0);
 
+		if(compute == "line")
+		{
+			glEvalMesh2(GL_LINE, 0, partsU, 0, partsV);
+		}
+
+		if(compute == "fill")
+		{
+			glEvalMesh2(GL_FILL, 0, partsU, 0, partsV);
+		}
+
+		if(compute == "point")
+		{
+			glEvalMesh2(GL_POINT, 0, partsU, 0, partsV);
+		}
 	}
 }
 

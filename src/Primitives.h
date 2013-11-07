@@ -15,29 +15,17 @@ class Patch: public CGFobject
 	unsigned int order;
 	unsigned int partsU;
 	unsigned int partsV;
-	string compute;
-	vector<vector<float>> controlpoints;
-
-	GLfloat crtlpointsONE[4][3];
-	GLfloat nrmlcomponONE[4][3];
-	GLfloat textpointsONE[4][2];
-
-	GLfloat crtlpointsTWO[9][3];
-	GLfloat nrmlcomponTWO[9][3];
-	GLfloat textpointsTWO[9][2];
-
-	GLfloat crtlpointsTHREE[16][3];
-	GLfloat nrmlcomponTHREE[16][3];
-	GLfloat textpointsTHREE[16][2];
+	string compute;	
+	GLfloat* crtlpoints;
 
 public:
 
-	Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, vector<vector<float>> controlpoints);
+	Patch(unsigned int order, unsigned int partsU, unsigned int partsV, string compute, GLfloat* crtlpoints);
 	unsigned int getOrder();
 	unsigned int getPartsU();
 	unsigned int getPartsV();
 	string getCompute();
-	vector<vector<float>> getControlPoints(); 
+	GLfloat* getControlPoints(); 
 
 	void draw();
 	void print();
