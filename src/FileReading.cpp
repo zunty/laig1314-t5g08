@@ -244,6 +244,7 @@ FileReading::FileReading(char *filename)
 			vector<Transform*> transforms_order;
 			vector<Translate*> translations;
 			vector<Rotation*> rotations;
+			vector<Plane*> planes;
 			vector<Rectangle*> rectangles;
 			vector<Triangle*> triangles;
 			vector<Cylinder*> cylinders;
@@ -321,6 +322,15 @@ FileReading::FileReading(char *filename)
 					TiXmlElement *childs=transforms->FirstChildElement();
 					while(childs)
 					{
+						if(strcmp(childs->Value(),"plane")==0)
+						{
+							int div;
+							childs->QueryIntAttribute("parts", &div);
+
+							Plane* p = new Plane(div);
+							planes.push_back(p);
+						}
+						
 						if(strcmp(childs->Value(),"rectangle")==0)
 						{
 							string xy1_s, xy2_s;
@@ -419,13 +429,14 @@ FileReading::FileReading(char *filename)
 				transforms=transforms->NextSiblingElement();
 			}
 
-			Node* nd = new Node(id, appearanceref, noderefs, scales, translations, rotations, rectangles, triangles, cylinders, spheres, torus, transforms_order, display_state);			
+			Node* nd = new Node(id, appearanceref, noderefs, scales, translations, rotations, planes, rectangles, triangles, cylinders, spheres, torus, transforms_order, display_state);			
 
 			nodes.push_back(nd);
 
 			scales.clear();
 			translations.clear();
 			rotations.clear();
+			planes.clear( );
 			rectangles.clear();
 			triangles.clear();
 			cylinders.clear();
@@ -511,7 +522,6 @@ void FileReading::print()
 void FileReading::printNodes()
 {
    cout << "NODES: " << endl << endl;
-
 	
 	for(unsigned int i = 0; i < nodes.size(); i++)
 	{

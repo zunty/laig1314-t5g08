@@ -64,6 +64,11 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 
 			primitives.clear();
 
+			for(int j = 0; j < nodes[i]->getPlanes().size(); j++)
+			{
+				primitives.push_back(nodes[i]->getPlanes()[j]);
+			}
+
 			for(int j = 0; j < nodes[i]->getRectangles().size(); j++)
 			{
 				primitives.push_back(nodes[i]->getRectangles()[j]);

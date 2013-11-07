@@ -10,7 +10,7 @@ GraphScene::GraphScene( char *filename )
 void GraphScene::init()
 {
 	//f->print();
-	//f->printNodes();
+	f->printNodes();
 }
 
 void GraphScene::display()

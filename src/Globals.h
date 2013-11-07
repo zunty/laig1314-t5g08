@@ -7,7 +7,6 @@ using namespace std;
 
 class Globals
 {
-
 	vector<float> background;
 	string drawmode;
 	string shading;
@@ -24,7 +23,6 @@ public:
 	void setShading(string shading);
 	void setCullface(string cullface); 
 	void setCullorder(string cullorder);
-
 
 	//GETS
 	vector<float> getBackground();

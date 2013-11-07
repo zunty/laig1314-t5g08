@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 class Node
 {
 
@@ -19,6 +18,7 @@ class Node
 	vector<Scale*> scales;
 	vector<Translate*> translations;
 	vector<Rotation*> rotations;
+	vector<Plane*> planes;
 	vector<Rectangle*> rectangles;
 	vector<Triangle*> triangles;
 	vector<Cylinder*> cylinders;
@@ -30,7 +30,7 @@ class Node
 	
 public:
 
-	Node(string id, string appearanceref_id, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations, vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list);
+	Node(string id, string appearanceref_id, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations, vector<Plane*> planes,  vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list);
 
 	//GETS
 	string getId();
@@ -40,6 +40,7 @@ public:
 	vector<Transform*> getTransforms();
 	vector<Translate*> getTranslations();
 	vector<Rotation*>  getRotations();
+	vector<Plane*> getPlanes();
 	vector<Rectangle*>	getRectangles();
 	vector<Triangle*> getTriangles();
 	vector<Cylinder*> getCylinders();

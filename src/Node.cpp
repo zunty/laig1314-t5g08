@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node( string id, string appearanceref, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations, vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list )
+Node::Node(string id, string appearanceref_id, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations, vector<Plane*> planes,  vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list)
 {
 		this->id = id;
 		this->appearanceref = appearanceref;
@@ -9,6 +9,7 @@ Node::Node( string id, string appearanceref, vector<string> noderefs, vector<Sca
 		this->transforms = transforms;
 		this->translations = translations;
 		this->rotations = rotations;
+		this->planes = planes;
 		this->rectangles = rectangles;
 		this->triangles = triangles;
 		this->cylinders = cylinders;
@@ -50,6 +51,11 @@ vector<Translate*> Node::getTranslations()
 vector<Rotation*> Node::getRotations()
 {
    return rotations;
+}
+
+vector<Plane*> Node::getPlanes()
+{
+	return planes;
 }
 
 vector<Rectangle*> Node::getRectangles()
@@ -115,6 +121,11 @@ void Node::print()
 	for(unsigned int i = 0; i < scales.size(); i++)
 	{
 		scales[i]->print();
+	}
+
+	for(unsigned int i = 0; i < planes.size(); i++)
+	{
+		planes[i]->print();
 	}
 
 	for(unsigned int i = 0; i < rectangles.size(); i++)

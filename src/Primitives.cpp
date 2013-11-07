@@ -260,3 +260,83 @@ void Torus::print()
 	cout << "Slices: " << slices << endl;
 	cout << "Loops: " << loops << endl << endl;
 }
+
+Plane::Plane( unsigned int divisions )
+{
+	this->divisions = divisions;
+
+	//Initialize control points
+	this->crtlpoints[0][0] = 0.5;
+	this->crtlpoints[0][1] = 0.0;
+	this->crtlpoints[0][2] = 0.5;
+
+	this->crtlpoints[1][0] = -0.5;
+	this->crtlpoints[1][1] = 0.0;
+	this->crtlpoints[1][2] = 0.5;
+
+	this->crtlpoints[2][0] = 0.5;
+	this->crtlpoints[2][1] = 0.0;
+	this->crtlpoints[2][2] = -0.5;
+
+	this->crtlpoints[3][0] = -0.5;
+	this->crtlpoints[3][1] = 0.0;
+	this->crtlpoints[3][2] = -0.5;
+
+	//Initialize normal points
+	this->nrmlcompon[0][0] = 0.0;
+	this->nrmlcompon[0][1] = 1.0;
+	this->nrmlcompon[0][2] = 0.0;
+
+	this->nrmlcompon[1][0] = 0.0;
+	this->nrmlcompon[1][1] = 1.0;
+	this->nrmlcompon[1][2] = 0.0;
+
+	this->nrmlcompon[2][0] = 0.0;
+	this->nrmlcompon[2][1] = 1.0;
+	this->nrmlcompon[2][2] = 0.0;
+
+	this->nrmlcompon[3][0] = 0.0;
+	this->nrmlcompon[3][1] = 1.0;
+	this->nrmlcompon[3][2] = 0.0;
+
+	//Initialize texture points
+
+	this->textpoints[0][0] = 0.0;
+	this->textpoints[0][1] = 0.0;
+
+	this->textpoints[1][0] = 0.0;
+	this->textpoints[1][1] = 1.0;
+
+	this->textpoints[2][0] = 1.0;
+	this->textpoints[2][1] = 0.0;
+
+	this->textpoints[3][0] = 1.0;
+	this->textpoints[3][1] = 1.0;
+}
+
+int Plane::getDivisions()
+{
+	return divisions;
+}
+
+void Plane::draw()
+{
+
+	glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2, 0.0, 1.0, 6, 2, *crtlpoints);
+	glMap2f(GL_MAP2_NORMAL, 0.0, 1.0, 3, 2, 0.0, 1.0, 6, 2, *nrmlcompon);
+	glMap2f(GL_MAP2_TEXTURE_COORD_4, 0.0, 1.0, 2, 2, 0.0, 1.0, 4, 2, *textpoints);
+
+	glEnable(GL_MAP2_VERTEX_3);
+	glEnable(GL_MAP2_NORMAL);
+	glEnable(GL_MAP2_TEXTURE_COORD_4);
+
+	glMapGrid2f(divisions, 0.0, 1.0, divisions, 0.0, 1.0);
+
+	//glEnable(GL_LIGHTING);
+	glEvalMesh2(GL_LINE, 0, divisions, 0, divisions);
+}
+
+void Plane::print()
+{
+	cout << "Plane with " << divisions << " divisions" << endl << endl;
+}

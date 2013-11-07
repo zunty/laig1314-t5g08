@@ -6,8 +6,26 @@
 #include <sstream>
 #include <iostream>
 #include "CGFobject.h"
+#include "CGFtexture.h"
 
 using namespace std;
+
+class Plane: public CGFobject
+{
+	unsigned int divisions;
+	CGFtexture* texture;
+
+	GLfloat crtlpoints[4][3];
+	GLfloat nrmlcompon[4][3];
+	GLfloat textpoints[4][2];
+
+public:
+
+	Plane(unsigned int divisions);
+	int getDivisions();
+	void draw();
+	void print();
+};
 
 class Rectangle: public CGFobject
 {
