@@ -42,17 +42,38 @@
 				specular="0.0 0.8 0.8 0.9" 
 				shininess="120.0"
 			/>			
-			</appearances> 
+			</appearances>
+			
+			<animations>
+				<animation id="um" span="50" type="linear">
+					<controlpoint xx="5.0" yy="6.0" zz="7.0" />
+					<controlpoint xx="-5.0" yy="-6.0" zz="-7.0" />
+					<controlpoint xx="-5.0" yy="6.0" zz="-.0" />
+					<controlpoint xx="5.0" yy="-6.0" zz="7.0" />
+					
+				</animation>
+			</animations>
 
 			<graph rootid="root"> 
 
 				<node id="root"> 
 					<transforms> 
-					</transforms> 
+					</transforms>
+					
+					 <animationref id="um" />
 					
 					<children> 
-						<noderef id="table" />
-						<plane parts="50" />
+						<patch order="2" partsU="10" partsV="10" compute="fill">
+							<controlpoint x="3.0" y="0.0" z="3.0" />
+							<controlpoint x="0.0" y="0.0" z="3.0" />
+							<controlpoint x="-3.0" y="0.0" z="3.0" />
+							<controlpoint x="3.0" y="0.0" z="0.0" />
+							<controlpoint x="0.0" y="3.0" z="0.0" />
+							<controlpoint x="-3.0" y="0.0" z="0.0" />
+							<controlpoint x="3.0" y="0.0" z="-3.0" />
+							<controlpoint x="0.0" y="0.0" z="-3.0" />
+							<controlpoint x="-3.0" y="0.0" z="-3.0" />							
+						</patch>
 					</children> 
 				</node>
 				
@@ -62,6 +83,7 @@
 					</transforms>
 					
 					<appearanceref id="table" />
+					
 					
 					<children> 
 						<noderef id="top" />
