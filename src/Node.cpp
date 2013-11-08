@@ -1,9 +1,10 @@
 #include "Node.h"
 
-Node::Node(string id, string appearanceref_id, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations,  vector<Patch*> patches, vector<Plane*> planes,  vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list)
+Node::Node(string id, string appearanceref, string animationref, vector<string> noderefs, vector<Scale*> scales, vector<Translate*> translations, vector<Rotation*> rotations,  vector<Patch*> patches, vector<Plane*> planes,  vector<Rectangle*> rectangles, vector<Triangle*> triangles, vector<Cylinder*> cylinders, vector<Shpere*> spheres, vector<Torus*> torus, vector<Transform*> transforms, bool display_list)
 {
 		this->id = id;
 		this->appearanceref = appearanceref;
+		this->animationref = animationref;
 		this->noderefs = noderefs;
 		this->scales = scales;
 		this->transforms = transforms;
@@ -27,6 +28,11 @@ std::string Node::getId()
 std::string Node::getAppearancesref()
 {
 	return appearanceref;
+}
+
+std::string Node::getAnimationref()
+{
+	return animationref;
 }
 
 vector<string> Node::getNoderefs()
@@ -164,6 +170,10 @@ void Node::print()
 		torus[i]->print();
 	}
 }
+
+
+
+
 
 
 

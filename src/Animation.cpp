@@ -32,3 +32,8 @@ Animation::~Animation()
 {
 
 }
+
+string Animation::getId()
+{
+	return id;
+}

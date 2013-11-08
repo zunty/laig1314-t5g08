@@ -1,6 +1,6 @@
 #include "NodeScene.h"
 
-NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*> textures, vector<Node*> nodes)
+NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Animation*> animations, vector<Texture*> textures, vector<Node*> nodes)
 {
 
 	this->id == id;
@@ -13,6 +13,19 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 
 			this->display_list = nodes[i]->getDisplayList();
 			this->display_id = -1;
+
+			//Create Animation
+
+			anime = false;
+
+			for(unsigned int j = 0; j < animations.size(); j++)
+			{
+				if(nodes[i]->getAnimationref() == animations[j]->getId())
+				{
+					animation = animations[j];
+					anime = true;
+				}
+			}
 
 			//Create appearance
 
@@ -109,7 +122,7 @@ NodeScene::NodeScene(string id, vector<Appearance*> appearances, vector<Texture*
 			{
 				for(unsigned int j = 0; j < nodes[i]->getNoderefs().size(); j++)
 				{
-					NodeScene* n = new NodeScene(nodes[i]->getNoderefs()[j], appearances, textures, nodes);
+					NodeScene* n = new NodeScene(nodes[i]->getNoderefs()[j], appearances, animations, textures, nodes);
 					child_nodes.push_back(n);
 				}
 			}
@@ -127,6 +140,14 @@ void NodeScene::generateGeometry()
 
 	if(app == true)
 		appearance->apply();
+
+	if(anime == true)
+	{
+		cout << "x: " << animation->getControlPoints()[0][0] << endl;
+		cout << "y: " << animation->getControlPoints()[0][1] << endl;
+		cout << "z: " << animation->getControlPoints()[0][2] << endl;
+		animation->draw();
+	}
 	
 	//Aplicar transformações
 	for(unsigned int i = 0; i < scene_transforms.size(); i++){

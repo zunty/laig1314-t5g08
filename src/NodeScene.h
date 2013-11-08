@@ -13,17 +13,18 @@ class NodeScene
 {
 	
 	string id;
-	bool app;
+	bool app, anime;
 	bool display_list;
 	int display_id;
 	CGFappearance* appearance;
+	Animation* animation;
 	vector<Transform*> scene_transforms;
 	vector<CGFobject*> primitives;
 	vector<NodeScene*> child_nodes;
 
 public:
 
-	NodeScene(string id, vector<Appearance*> appearances, vector<Texture*> textures, vector<Node*> nodes);
+	NodeScene(string id, vector<Appearance*> appearances, vector<Animation*> animations,   vector<Texture*> textures, vector<Node*> nodes);
 
 	string getId();
 	void setAppearance(vector<CGFappearance*> appearances, vector<Node*> nodes);

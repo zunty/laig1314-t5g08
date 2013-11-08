@@ -4,13 +4,15 @@
 GraphScene::GraphScene( char *filename )
 {
 	f = new FileReading(filename);
-	root_node = new NodeScene(f->root_node_id, f->appearances, f->textures, f->nodes);
+	root_node = new NodeScene(f->root_node_id, f->appearances, f->animations, f->textures, f->nodes);
 }
 
 void GraphScene::init()
 {
 	//f->print();
-	f->printNodes();
+	//f->printNodes();
+
+	setUpdatePeriod(50);
 }
 
 void GraphScene::display()
@@ -44,7 +46,10 @@ void GraphScene::display()
 
 void GraphScene::update( unsigned long t )
 {
-
+	for(unsigned int i = 0; i < f->animations.size(); i++)
+	{
+		f->animations[i]->update(t);
+	}
 }
 
 GraphScene::~GraphScene()

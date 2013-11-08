@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Globals.h"
 #include "Lighting.h"
+#include "LinearAnimation.h"
 #include "Node.h"
 #include "Camera.h"
 
@@ -17,6 +18,7 @@ public:
 
 	//Main vectors
 	vector<Appearance*> appearances;
+	vector<Animation*> animations;
 	vector<Texture*> textures;
 	vector<Camera*> cameras;
 	vector<Lighting*> lights;
@@ -51,6 +53,7 @@ protected:
 	TiXmlElement* lightingElement;
 	TiXmlElement* textsElement;
 	TiXmlElement* appsElement;
+	TiXmlElement* animesElement;
 	TiXmlElement* transformsElement;
 	TiXmlElement* childrenElement;
 	TiXmlElement* leavesElement;

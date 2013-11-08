@@ -17,6 +17,9 @@ public:
 	virtual void update(unsigned long t);
 	virtual void draw();
 	virtual void reset();
+	virtual vector<vector<float>> getControlPoints() = 0;
+
+	string getId();
 
 	virtual ~Animation();
 

@@ -64,6 +64,7 @@ FileReading::FileReading(char *filename)
 	appsElement =  yafElement->FirstChildElement( "appearances" );
 	nodesElement =  yafElement->FirstChildElement( "Nodes" );
 	graphElement =  yafElement->FirstChildElement( "graph" );
+	animesElement = yafElement->FirstChildElement("animations");
 
 
 	// Globals
@@ -222,6 +223,59 @@ FileReading::FileReading(char *filename)
 		}
 	}
 
+	//Animations
+	if(animesElement == NULL)
+		printf("Animations block not found!\n");
+	else
+	{
+		TiXmlElement *animation = animesElement->FirstChildElement();
+
+		while(animation)
+		{
+			vector<vector<float>> points;
+			string id, type;
+			float span;
+
+			id = animation->Attribute("id");
+			type = animation->Attribute("type");
+			animation->QueryFloatAttribute("span", &span);
+
+			TiXmlElement *controlpoint = animation->FirstChildElement();
+
+			while(controlpoint)
+			{
+				if(strcmp(controlpoint->Value(),"controlpoint")==0)
+				{
+					vector<float> point;
+					float x, y, z;
+					controlpoint->QueryFloatAttribute("xx", &x);
+					controlpoint->QueryFloatAttribute("yy", &y);
+					controlpoint->QueryFloatAttribute("zz", &z);
+
+					point.push_back(x);
+					point.push_back(y);
+					point.push_back(z);
+
+					points.push_back(point);
+
+					controlpoint = controlpoint->NextSiblingElement();
+				}
+				
+			}
+
+
+
+			if(type == "linear")
+			{
+				LinearAnimation* a = new LinearAnimation(id, span, type, points);
+				animations.push_back(a);
+			}
+			
+			animation = animation->NextSiblingElement();
+		}
+	}
+
+
 
 
 	//Graph
@@ -238,7 +292,7 @@ FileReading::FileReading(char *filename)
 		while (node)
 		{
 
-			string id, appearanceref;
+			string id, appearanceref, animationref;
 			bool display_state;
 			vector<Scale*> scales;
 			vector<Transform*> transforms_order;
@@ -266,6 +320,10 @@ FileReading::FileReading(char *filename)
 				if(strcmp(transforms->Value(),"appearanceref")==0)
 				{
 					appearanceref = transforms->Attribute("id");
+				}
+				if(strcmp(transforms->Value(),"animationref")==0)
+				{
+					animationref = transforms->Attribute("id");
 				}
 				if(strcmp(transforms->Value(),"transforms")==0)
 				{
@@ -469,7 +527,7 @@ FileReading::FileReading(char *filename)
 				transforms=transforms->NextSiblingElement();
 			}
 
-			Node* nd = new Node(id, appearanceref, noderefs, scales, translations, rotations, patches, planes, rectangles, triangles, cylinders, spheres, torus, transforms_order, display_state);			
+			Node* nd = new Node(id, appearanceref, animationref, noderefs, scales, translations, rotations, patches, planes, rectangles, triangles, cylinders, spheres, torus, transforms_order, display_state);			
 
 			nodes.push_back(nd);
 
